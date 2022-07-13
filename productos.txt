@@ -1,1 +1,1 @@
-[{"title":"testEjs2","price":"666666","thumbnail":"https://cdn2.iconfinder.com/data/icons/artificial-intelligence-6/64/ArtificialIntelligence21-256.png","id":1}]
+[]

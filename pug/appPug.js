@@ -26,7 +26,11 @@ app.get("/", (req, res) => {
 app.get("/productos", async (req, res) => {
   const arrayProductos = await file1.getAll();
 
-  res.render("productList.pug", { results: arrayProductos });
+  if (arrayProductos && arrayProductos.length > 0) {
+    res.render("productList.pug", { results: arrayProductos });
+  } else {
+    res.render("noProduct.pug"), { mensaje: "No Hay Productos" };
+  }
 });
 
 app.post("/productos", async (req, res) => {

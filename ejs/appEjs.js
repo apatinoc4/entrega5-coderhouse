@@ -25,7 +25,11 @@ app.get("/", (req, res) => {
 app.get("/productos", async (req, res) => {
   const arrayProductos = await file1.getAll();
 
-  res.render("pages/productList", { arrayProductos });
+  if (arrayProductos && arrayProductos.length > 0) {
+    res.render("pages/productList", { arrayProductos });
+  } else {
+    res.render("pages/noProduct");
+  }
 });
 
 app.post("/productos", async (req, res) => {

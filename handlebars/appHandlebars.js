@@ -34,7 +34,14 @@ app.get("/", (req, res) => {
 app.get("/productos", async (req, res) => {
   const arrayProductos = await file1.getAll();
 
-  res.render("productList", { productList: arrayProductos, listExists: true });
+  if (arrayProductos && arrayProductos.length > 0) {
+    res.render("productList", {
+      productList: arrayProductos,
+      listExists: true,
+    });
+  } else {
+    res.render("noProduct");
+  }
 });
 
 app.post("/productos", async (req, res) => {
