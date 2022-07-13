@@ -1,0 +1,17 @@
+
+html
+    head
+        title='Plantilla Get Productos'
+    body
+        table 
+            tbody 
+            for items in results
+                    tr
+                        th
+                            h1=items.title
+                        th
+                            h3=items.price
+                        th
+                            img(src=items.thumbnail)
+
+    a(class='button' href='http://localhost:8080/') Crear Producto

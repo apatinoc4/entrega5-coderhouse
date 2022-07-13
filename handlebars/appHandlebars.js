@@ -5,7 +5,6 @@ const classContenedor = require("../classContenedor");
 const file1 = new classContenedor("../productos.txt");
 
 const app = express();
-const router = Router();
 
 app.engine(
   "hbs",
@@ -35,7 +34,6 @@ app.get("/", (req, res) => {
 app.get("/productos", async (req, res) => {
   const arrayProductos = await file1.getAll();
 
-  // return res.send(arrayProductos);]
   res.render("productList", { productList: arrayProductos, listExists: true });
 });
 
@@ -46,5 +44,5 @@ app.post("/productos", async (req, res) => {
 
   const arrayProductos = await file1.getAll();
 
-  return res.send(arrayProductos[arrayProductos.length - 1]);
+  res.render("productList", { productList: arrayProductos, listExists: true });
 });

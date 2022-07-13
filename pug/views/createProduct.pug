@@ -1,0 +1,28 @@
+html
+    head
+        title='App Pug'
+    body
+        h2="Crear Producto"
+
+        block content
+            form(action="/productos" method="POST")
+                    p='Title'
+                    input(
+                        type='text'
+                        name='title'
+                    )
+                    p='Price'
+                    input(
+                        type='number'
+                        name='price'
+                    )
+                    p='Thumbnail'
+                    input(
+                        type='text'
+                        name='thumbnail'
+                    )
+                    button Submit
+
+
+
+        a(class='button' href='http://localhost:8080/productos') Lista Productos

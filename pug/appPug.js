@@ -1,14 +1,16 @@
 const express = require("express");
-const classContenedor = require("./classContenedor");
-const { Router } = express;
+const classContenedor = require("../classContenedor");
 
-const file1 = new classContenedor("productos.txt");
+const file1 = new classContenedor("../productos.txt");
 
 const app = express();
-const router = Router();
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
+app.set("views", "./views");
+app.set("view engine", "pug");
+
+app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 8080;
 
@@ -18,27 +20,16 @@ const server = app.listen(process.env.PORT || 8080, () => {
 server.on("error", (error) => console.log(`Error en servidor ${error}`));
 
 app.get("/", (req, res) => {
-  res.send("Ingresa a /productos o /productoRandom !");
+  res.render("createProduct.pug");
 });
 
-router.get("/", async (req, res) => {
+app.get("/productos", async (req, res) => {
   const arrayProductos = await file1.getAll();
 
-  return res.send(arrayProductos);
+  res.render("productList.pug", { results: arrayProductos });
 });
 
-router.get("/:id", async (req, res) => {
-  const productId = parseInt(req.params.id);
-  const foundProduct = await file1.getById(productId);
-
-  if (foundProduct) {
-    return res.send(foundProduct);
-  } else {
-    return res.send({ error: "producto no encontrado" });
-  }
-});
-
-router.post("/", async (req, res) => {
+app.post("/productos", async (req, res) => {
   const newProduct = req.body;
 
   await file1.save(newProduct);
@@ -47,21 +38,3 @@ router.post("/", async (req, res) => {
 
   return res.send(arrayProductos[arrayProductos.length - 1]);
 });
-
-router.delete("/:id", async (req, res) => {
-  const productId = parseInt(req.params.id);
-
-  await file1.deleteById(productId);
-
-  return res.sendStatus(200);
-});
-
-router.put("/:id", async (req, res) => {
-  const productId = parseInt(req.params.id);
-
-  await file1.updateById(productId, req.body);
-
-  return res.sendStatus(200);
-});
-
-app.use("/api/productos", router);

@@ -35,5 +35,5 @@ app.post("/productos", async (req, res) => {
 
   const arrayProductos = await file1.getAll();
 
-  return res.send(arrayProductos[arrayProductos.length - 1]);
+  res.render("pages/productList", { arrayProductos });
 });
