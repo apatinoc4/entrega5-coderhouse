@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+      </thead>
+      <tbody>
+        <% for(let producto of arrayProductos){ %>
+        <tr>
+          <td><%=producto.id%></td>
+          <td><%=producto.title%></td>
+          <td><%=producto.price%></td>
+          <td><%=producto.thumbnail%></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+    <input type="button" onclick="location.href='/';" value="Crear Producto" />
+  </body>
+</html>

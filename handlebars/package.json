@@ -1,0 +1,16 @@
+{
+  "name": "handlebars_template",
+  "version": "1.0.0",
+  "description": "plantilla handlebars",
+  "main": "appHandlebars.js",
+  "scripts": {
+    "start": "nodemon appHandlebars.js",
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.0-beta1",
+    "express-handlebars": "^6.0.6"
+  }
+}

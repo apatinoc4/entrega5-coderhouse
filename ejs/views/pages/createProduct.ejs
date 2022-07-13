@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <h2>Crear Producto</h2>
+    <form action="/productos" method="POST">
+      Nombre:
+      <input type="text" name="title" />
+      Precio:
+      <input type="number" name="price" />
+      Imagen:
+      <input type="text" name="thumbnail" />
+      <button>Crear</button>
+    </form>
+    <input
+      type="button"
+      onclick="location.href='/productos';"
+      value="Lista Productos"
+    />
+  </body>
+</html>
